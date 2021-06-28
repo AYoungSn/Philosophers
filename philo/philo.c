@@ -2,6 +2,8 @@
 
 int		main(int argc, char *argv[])
 {
+	t_info	*info;
+
 	if (argc < 5 || argc > 6)
 	{
 		printf("argument error\n");
@@ -13,5 +15,16 @@ int		main(int argc, char *argv[])
 	printf("time to sleep: %s\n", argv[4]);
 	if (argc == 6)
 		printf("number of times each philosopher must eat: %s\n", argv[5]);
+	if (!init_info(info, argc, argv))
+		return (0);
+	printf("%d\n", get_time());
 	return (0);
+}
+
+void	philo_start(void)
+{
+
+	philo_eat();
+	philo_sleep();
+	philo_think();
 }
