@@ -1,9 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/07/30 21:40:24 by ahnys             #+#    #+#              #
+#    Updated: 2021/07/30 21:40:26 by ahnys            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-lpthread
+CFLAGS = -Wall -Werror -Wextra
 
 SRCS = philo.c utils.c print.c \
 		routine.c \
-		ft_atoi.c ft_putnbr_fd.c
+		ft_atoi.c ft_putnbr_fd.c \
+		utils2.c
 OBJS = $(SRCS:.c=.o)
 NAME = philo
 
@@ -12,7 +25,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-clean: rm -f $(OBJS)
+clean: 
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
