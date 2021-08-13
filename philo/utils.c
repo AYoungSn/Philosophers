@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:59 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/13 15:49:43 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/13 17:19:22 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,8 @@ static void	init_philos(t_info *info)
 	}
 }
 
-int	init_info(t_info *info, int argc, char *argv[])
+int	init_info(t_info *info)
 {
-	info->num_philo = ft_atoi(argv[1]);
-	info->t_die = ft_atoi(argv[2]);
-	info->t_eat = ft_atoi(argv[3]);
-	info->t_sleep = ft_atoi(argv[4]);
-	printf("time_die: %d\n", info->t_die);
-	info->ntime_eat = -1;
-	if (argc == 6)
-		info->ntime_eat = ft_atoi(argv[5]);
-	else
-		info->ntime_eat = 0;
-	if (info->num_philo > 200 || info->num_philo < 1 || info->t_die < 60
-		|| info->t_eat < 60 || info->t_sleep < 60)
-		return (0);
 	init_philos(info);
 	return (mutex_init(info));
 }

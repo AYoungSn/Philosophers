@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/30 21:40:53 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/13 17:04:12 by ahnys            ###   ########.fr       */
+/*   Created: 2021/08/13 17:39:34 by ahnys             #+#    #+#             */
+/*   Updated: 2021/08/13 17:39:36 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*routine(void *p)
 	pthread_t	tid;
 
 	philo = (t_philo *)p;
-	// printf("routine: philo num: %d\n", philo->position);
 	if (pthread_create(&tid, NULL, &monitor, philo) != 0)
 		return ((void *)1);
 	pthread_detach(tid);
