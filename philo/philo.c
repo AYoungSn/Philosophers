@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:29 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/13 17:37:51 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/13 21:15:50 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	*monitor(void *p)
 		if (!philo->is_eating
 			&& get_time() - philo->info->start > philo->limit)
 		{
-			printf("philo limit: %llu\n", philo->limit);
-			printf("current time: %llu\n", get_time() - philo->info->start);
 			print_msg(philo, T_DIE);
 			pthread_mutex_unlock(&philo->mutex);
 			pthread_mutex_unlock(&philo->info->somebody_dead);
