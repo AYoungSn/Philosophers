@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:29 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/13 14:23:58 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/13 16:54:56 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,21 @@ void	*monitor(void *p)
 	t_philo	*philo;
 
 	philo = p;
-	pthread_mutex_lock(&philo->info->wri);
-	// write(1, "monitor\n", 8);
-	pthread_mutex_unlock(&philo->info->wri);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->mutex);
-		if (!philo->is_eating && get_time() > philo->limit)
+		if (!philo->is_eating &&
+			get_time() - philo->info->start > philo->limit)
 		{
+			printf("philo limit: %llu\n", philo->limit);
+			printf("current time: %llu\n", get_time() - philo->info->start);
 			print_msg(philo, T_DIE);
 			pthread_mutex_unlock(&philo->mutex);
 			pthread_mutex_unlock(&philo->info->somebody_dead);
 			return ((void *)0);
 		}
 		pthread_mutex_unlock(&philo->mutex);
-		usleep(1000);
-		// ft_sleep(1);
+		usleep(100);
 	}
 	return ((void *)0);
 }
@@ -77,8 +76,7 @@ static int	start_threads(t_info *info)
 		if (pthread_create(&tid, NULL, &routine, philo) != 0)
 			return (1);
 		pthread_detach(tid);
-		usleep(100);
-		// ft_sleep(1000);
+		usleep(5);
 		i++;
 	}
 	return (0);
@@ -103,5 +101,6 @@ int	main(int argc, char *argv[])
 	pthread_mutex_unlock(&info.somebody_dead);
 	// write(1, "clear\n", 6);
 	clear_info(&info);
+	// system("leaks philo");
 	return (0);
 }

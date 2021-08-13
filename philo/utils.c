@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:59 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/01 17:31:03 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/13 15:49:43 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	init_philos(t_info *info)
 		info->philos[i].lfork = i;
 		info->philos[i].rfork = (i + 1) % info->num_philo;
 		info->philos[i].info = info;
-		info->philos[i].last_eat = get_time();
-		info->philos[i].limit = info->philos[i].last_eat + info->t_die;
+		info->philos[i].last_eat = 0;
+		info->philos[i].limit = info->t_die;
 		pthread_mutex_init(&info->philos[i].mutex, NULL);
 		pthread_mutex_init(&info->philos[i].eat_m, NULL);
 		pthread_mutex_lock(&info->philos[i].eat_m);
@@ -73,6 +73,7 @@ int	init_info(t_info *info, int argc, char *argv[])
 	info->t_die = ft_atoi(argv[2]);
 	info->t_eat = ft_atoi(argv[3]);
 	info->t_sleep = ft_atoi(argv[4]);
+	printf("time_die: %d\n", info->t_die);
 	info->ntime_eat = -1;
 	if (argc == 6)
 		info->ntime_eat = ft_atoi(argv[5]);

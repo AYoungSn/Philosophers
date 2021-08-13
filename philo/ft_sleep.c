@@ -2,11 +2,13 @@
 
 void	ft_sleep(useconds_t time)
 {
-	uint64_t	start;
+	uint64_t	purpose;
 
-	start = get_time();
-	while (get_time() - start < time)
+	purpose = get_time() + time;
+	while (get_time() < purpose)
 	{
-		usleep(1000);
+		if (get_time() >= purpose)
+			break ;
+		usleep(100);
 	}
 }
