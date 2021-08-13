@@ -6,7 +6,7 @@
 #    By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/30 21:40:24 by ahnys             #+#    #+#              #
-#    Updated: 2021/07/30 21:40:26 by ahnys            ###   ########.fr        #
+#    Updated: 2021/08/13 13:56:54 by ahnys            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = philo.c utils.c print.c \
 		routine.c \
 		ft_atoi.c ft_putnbr_fd.c \
-		utils2.c
+		utils2.c ft_sleep.c
 OBJS = $(SRCS:.c=.o)
 NAME = philo
 

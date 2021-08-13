@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:29 by ahnys             #+#    #+#             */
-/*   Updated: 2021/07/30 21:54:58 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/13 14:23:58 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*monitor(void *p)
 
 	philo = p;
 	pthread_mutex_lock(&philo->info->wri);
-	write(1, "monitor\n", 8);
+	// write(1, "monitor\n", 8);
 	pthread_mutex_unlock(&philo->info->wri);
 	while (1)
 	{
@@ -32,6 +32,7 @@ void	*monitor(void *p)
 		}
 		pthread_mutex_unlock(&philo->mutex);
 		usleep(1000);
+		// ft_sleep(1);
 	}
 	return ((void *)0);
 }
@@ -39,8 +40,20 @@ void	*monitor(void *p)
 void	*monitor_count(void *in)
 {
 	t_info	*info;
+	int		i;
+	int		total;
 
 	info = (t_info *)in;
+	total = 0;
+	while (total < info->ntime_eat)
+	{
+		i = 0;
+		while (i < info->num_philo)
+			pthread_mutex_lock(&info->philos[i++].eat_m);
+		total++;
+	}
+	print_msg(&info->philos[0], T_OVER);
+	pthread_mutex_unlock(&info->somebody_dead);
 	return ((void *)0);
 }
 
@@ -65,6 +78,7 @@ static int	start_threads(t_info *info)
 			return (1);
 		pthread_detach(tid);
 		usleep(100);
+		// ft_sleep(1000);
 		i++;
 	}
 	return (0);
@@ -79,19 +93,15 @@ int	main(int argc, char *argv[])
 		printf("argument error\n");
 		return (0);
 	}
-	if (argc == 6)
-		printf("number of times each philosopher must eat: %s\n", argv[5]);
+	// if (argc == 6)
+	// 	printf("number of times each philosopher must eat: %s\n", argv[5]);
 	if (!init_info(&info, argc, argv))
 		return (write(2, "argument error\n", 16) && clear_info(&info));
-	printf("number of philosophers: %d\n", info.num_philo);
-	printf("time to die: %d\n", info.t_die);
-	printf("time to eat: %d\n", info.t_eat);
-	printf("time to sleep: %d\n", info.t_sleep);
-	fflush(stdout);
 	if (start_threads(&info))
 		return (clear_info(&info) && write(2, "error\n", 7));
 	pthread_mutex_lock(&info.somebody_dead);
 	pthread_mutex_unlock(&info.somebody_dead);
+	// write(1, "clear\n", 6);
 	clear_info(&info);
 	return (0);
 }

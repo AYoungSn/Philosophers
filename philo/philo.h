@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:34 by ahnys             #+#    #+#             */
-/*   Updated: 2021/07/30 21:53:02 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/13 13:55:20 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void				*monitor_count(void *in);
 
 int					ft_atoi(char *str);
 void				ft_putnbr_fd(int n, int fd);
+void				ft_sleep(useconds_t time);
 /*
 ** utils.c
 */

@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:59 by ahnys             #+#    #+#             */
-/*   Updated: 2021/07/30 21:47:26 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/01 17:31:03 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static void	init_philos(t_info *info)
 		info->philos[i].last_eat = get_time();
 		info->philos[i].limit = info->philos[i].last_eat + info->t_die;
 		pthread_mutex_init(&info->philos[i].mutex, NULL);
+		pthread_mutex_init(&info->philos[i].eat_m, NULL);
+		pthread_mutex_lock(&info->philos[i].eat_m);
 		i++;
 	}
 }
