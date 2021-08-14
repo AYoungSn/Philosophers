@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:29 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/14 20:11:48 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/14 21:23:12 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	start_threads(t_info *info)
 		if (pthread_create(&tid, NULL, &routine, philo) != 0)
 			return (1);
 		pthread_detach(tid);
-		usleep(20);
+		usleep(50);
 		i++;
 	}
 	return (0);
