@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 17:39:34 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/13 17:39:36 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/14 20:10:50 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	take_forks(t_philo *philo)
 		pthread_mutex_lock(&philo->info->forks[philo->rfork]);
 		print_msg(philo, T_FORK);
 		pthread_mutex_lock(&philo->info->forks[philo->lfork]);
-		print_msg(philo, T_FORK_L);
+		print_msg(philo, T_FORK);
 		return ;
 	}
+	usleep(50);
 	pthread_mutex_lock(&philo->info->forks[philo->lfork]);
-	print_msg(philo, T_FORK_L);
+	print_msg(philo, T_FORK);
 	pthread_mutex_lock(&philo->info->forks[philo->rfork]);
 	print_msg(philo, T_FORK);
 }
