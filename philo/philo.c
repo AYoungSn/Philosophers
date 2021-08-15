@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:29 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/15 13:56:20 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 14:36:02 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*monitor(void *p)
 	t_philo	*philo;
 
 	philo = p;
-	while (1)
+	while (!philo->info->isDead)
 	{
 		pthread_mutex_lock(&philo->mutex);
 		if (!philo->is_eating
@@ -26,6 +26,7 @@ void	*monitor(void *p)
 			print_msg(philo, T_DIE);
 			pthread_mutex_unlock(&philo->mutex);
 			pthread_mutex_unlock(&philo->info->somebody_dead);
+			philo->info->isDead = 1;
 			return ((void *)0);
 		}
 		pthread_mutex_unlock(&philo->mutex);
@@ -74,6 +75,7 @@ static int	start_threads(t_info *info)
 		if (pthread_create(&tid, NULL, &routine, philo) != 0)
 			return (1);
 		pthread_detach(tid);
+		info->philos[i].tid = tid;
 		usleep(50);
 		i++;
 	}
@@ -96,7 +98,5 @@ int	main(int argc, char *argv[])
 	pthread_mutex_lock(&info.somebody_dead);
 	pthread_mutex_unlock(&info.somebody_dead);
 	clear_info(&info);
-	write(1, "*\n", 2);
-	// system("leaks philo");
 	return (0);
 }

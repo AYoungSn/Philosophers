@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 17:39:34 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/15 13:47:53 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 14:37:29 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,17 @@ void	*routine(void *p)
 	pthread_detach(tid);
 	while (1)
 	{
+		if (philo->info->isDead)
+			return ((void *)1);
 		take_forks(philo);
+		if (philo->info->isDead)
+			return ((void *)1);
 		philo_eat(philo);
+		if (philo->info->isDead)
+			return ((void *)1);
 		philo_sleep(philo);
+		if (philo->info->isDead)
+			return ((void *)1);
 		print_msg(philo, T_THINK);
 		usleep(200);
 	}
@@ -33,6 +41,8 @@ void	*routine(void *p)
 
 void	take_forks(t_philo *philo)
 {
+	if (philo->info->isDead)
+		return ;
 	if (philo->position == 0)
 	{
 		pthread_mutex_lock(&philo->info->forks[philo->rfork]);
@@ -55,6 +65,8 @@ void	philo_eat(t_philo *philo)
 	print_msg(philo, T_EAT);
 	philo->limit = philo->last_eat + philo->info->t_die;
 	ft_sleep(philo->info->t_eat);
+	if (philo->info->isDead)
+		return ;
 	philo->eat_count++;
 	philo->is_eating = 0;
 	pthread_mutex_unlock(&philo->mutex);
@@ -64,6 +76,8 @@ void	philo_eat(t_philo *philo)
 void	philo_sleep(t_philo *philo)
 {
 	print_msg(philo, T_SLP);
+	if (philo->info->isDead)
+		return ;
 	pthread_mutex_unlock(&philo->info->forks[philo->rfork]);
 	pthread_mutex_unlock(&philo->info->forks[philo->lfork]);
 	ft_sleep(philo->info->t_sleep);

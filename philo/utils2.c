@@ -6,13 +6,13 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:41:13 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/14 19:08:57 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 14:39:40 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	clear_info(t_info *info)
+static void	clear_fork(t_info *info)
 {
 	int	i;
 
@@ -20,9 +20,19 @@ int	clear_info(t_info *info)
 	{
 		i = 0;
 		while (i < info->num_philo)
+		{
+			pthread_join(info->philos[i].tid, 0);
 			pthread_mutex_destroy(&info->forks[i++]);
+		}
 		free(info->forks);
 	}
+}
+
+int	clear_info(t_info *info)
+{
+	int	i;
+
+	clear_fork(info);
 	if (info->philos)
 	{
 		i = 0;

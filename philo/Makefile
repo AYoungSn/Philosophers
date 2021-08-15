@@ -6,12 +6,12 @@
 #    By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/30 21:40:24 by ahnys             #+#    #+#              #
-#    Updated: 2021/08/13 13:56:54 by ahnys            ###   ########.fr        #
+#    Updated: 2021/08/15 14:34:17 by ahnys            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra # -fsanitize=address
 
 SRCS = philo.c utils.c print.c \
 		routine.c \

@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:34 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/13 17:26:49 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 14:21:14 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 typedef struct s_philo
 {
+	pthread_t		tid;
 	int				position;
 	int				lfork;
 	int				rfork;
@@ -54,6 +55,7 @@ typedef struct s_info
 	int				t_sleep;
 	int				ntime_eat;
 	long long		start;
+	int				isDead;
 }					t_info;
 
 /*

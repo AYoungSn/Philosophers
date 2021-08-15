@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:59 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/13 17:19:22 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 14:01:54 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ static void	init_philos(t_info *info)
 int	init_info(t_info *info)
 {
 	init_philos(info);
+	info->isDead = 0;
 	return (mutex_init(info));
 }
