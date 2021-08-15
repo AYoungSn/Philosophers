@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:41:13 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/15 14:39:40 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 18:29:38 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	clear_info(t_info *info)
 {
 	int	i;
 
+	usleep(1000);
 	clear_fork(info);
 	if (info->philos)
 	{
