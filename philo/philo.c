@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:29 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/14 21:23:12 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 13:56:20 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*monitor(void *p)
 			return ((void *)0);
 		}
 		pthread_mutex_unlock(&philo->mutex);
-		usleep(100);
+		usleep(200);
 	}
 	return ((void *)0);
 }
@@ -96,5 +96,7 @@ int	main(int argc, char *argv[])
 	pthread_mutex_lock(&info.somebody_dead);
 	pthread_mutex_unlock(&info.somebody_dead);
 	clear_info(&info);
+	write(1, "*\n", 2);
+	// system("leaks philo");
 	return (0);
 }

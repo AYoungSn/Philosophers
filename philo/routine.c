@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 17:39:34 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/14 21:34:54 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 13:47:53 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*routine(void *p)
 		philo_eat(philo);
 		philo_sleep(philo);
 		print_msg(philo, T_THINK);
-		usleep(100);
+		usleep(200);
 	}
 }
 
@@ -41,9 +41,6 @@ void	take_forks(t_philo *philo)
 		print_msg(philo, T_FORK);
 		return ;
 	}
-	// if (philo->info->num_philo % 2 == 1
-	// 	&& philo->position == philo->info->num_philo - 1)
-	// 	usleep(100);
 	pthread_mutex_lock(&philo->info->forks[philo->lfork]);
 	print_msg(philo, T_FORK);
 	pthread_mutex_lock(&philo->info->forks[philo->rfork]);
