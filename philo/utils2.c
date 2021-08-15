@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:41:13 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/15 18:29:38 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/15 18:58:10 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	clear_info(t_info *info)
 {
 	int	i;
 
-	usleep(1000);
+	usleep(info->t_die * 1000);
 	clear_fork(info);
 	if (info->philos)
 	{
@@ -60,6 +60,7 @@ static int	ft_isdigit(int c)
 int	argu_check(t_info *info, int argc, char *argv[])
 {
 	int	i;
+	int	j;
 
 	if (argc < 5 || argc > 6)
 		return (1);
@@ -70,6 +71,7 @@ int	argu_check(t_info *info, int argc, char *argv[])
 	info->ntime_eat = -1;
 	if (argc == 6)
 		info->ntime_eat = ft_atoi(argv[5]);
+	j = argc;
 	while (argc-- > 1)
 	{
 		i = 0;
@@ -79,7 +81,7 @@ int	argu_check(t_info *info, int argc, char *argv[])
 	}
 	if (info->num_philo > 200 || info->num_philo < 1 || info->t_die < 60
 		|| info->t_eat < 60 || info->t_sleep < 60
-		|| (argc == 6 && info->ntime_eat))
+		|| (j == 6 && info->ntime_eat < 0))
 		return (1);
 	return (0);
 }
