@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:40:29 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/15 18:31:33 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/18 14:09:58 by ahnys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	main(int argc, char *argv[])
 		write(2, "argument error\n", 16);
 		return (0);
 	}
+	if (info.ntime_eat == 0)
+		return (write(1, "0ms must eat count reached\n", 28));
 	if (!init_info(&info))
 		return (write(2, "argument error\n", 16) && clear_info(&info));
 	if (start_threads(&info))
