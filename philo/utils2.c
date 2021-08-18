@@ -6,7 +6,7 @@
 /*   By: ahnys <ahnys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 21:41:13 by ahnys             #+#    #+#             */
-/*   Updated: 2021/08/15 18:58:10 by ahnys            ###   ########.fr       */
+/*   Updated: 2021/08/18 13:58:10 by yoahn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	argu_check(t_info *info, int argc, char *argv[])
 			if (!ft_isdigit(argv[argc][i++]))
 				return (1);
 	}
-	if (info->num_philo > 200 || info->num_philo < 1 || info->t_die < 60
-		|| info->t_eat < 60 || info->t_sleep < 60
+	if (info->num_philo < 1 || info->t_die < 0
+		|| info->t_eat < 0 || info->t_sleep < 0
 		|| (j == 6 && info->ntime_eat < 0))
 		return (1);
 	return (0);
